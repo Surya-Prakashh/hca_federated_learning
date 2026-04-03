@@ -22,9 +22,9 @@ st.markdown("""
     :root {
         --primary: #0061ff;
         --secondary: #60efff;
-        --bg: #f8f9fa;
-        --card-bg: rgba(255, 255, 255, 0.95);
-        --text: #1e293b;
+        --bg: #0b0f19;
+        --card-bg: rgba(20, 25, 35, 0.8);
+        --text: #f8fafc;
     }
 
     html, body, [class*="css"] {
@@ -46,10 +46,22 @@ st.markdown("""
         background: var(--card-bg);
         border-radius: 16px;
         padding: 24px;
-        border: 1px solid rgba(0, 97, 255, 0.1);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 97, 255, 0.2);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         margin-bottom: 20px;
         transition: transform 0.3s ease;
+        color: var(--text);
+        text-align: center;
+    }
+    .metric-card h2 {
+        color: #60efff;
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+    .metric-card p {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        margin-top: 5px;
     }
 
     .metric-card:hover {
@@ -88,14 +100,15 @@ st.markdown("""
         padding: 20px;
         border-radius: 12px;
         border-left: 10px solid #ccc;
-        background: white;
+        background: rgba(255, 255, 255, 0.05);
         margin-bottom: 15px;
+        color: var(--text);
     }
-    .t-1 { border-color: #ef4444; background: #fef2f2; }
-    .t-2 { border-color: #f97316; background: #fffaf5; }
-    .t-3 { border-color: #eab308; background: #fefce8; }
-    .t-4 { border-color: #22c55e; background: #f0fdf4; }
-    .t-5 { border-color: #64748b; background: #f8fafc; }
+    .t-1 { border-color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+    .t-2 { border-color: #f97316; background: rgba(249, 115, 22, 0.1); }
+    .t-3 { border-color: #eab308; background: rgba(234, 179, 8, 0.1); }
+    .t-4 { border-color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+    .t-5 { border-color: #64748b; background: rgba(100, 116, 139, 0.1); }
 </style>
 """, unsafe_allow_html=True)
 
@@ -227,8 +240,8 @@ def display_triage_card(level, name):
     labels = {1: "🚨 EMERGENCY", 2: "⚠️ URGENT", 3: "🩺 PRIORITY", 4: "✅ ROUTINE", 5: "⚪ NON-URGENT"}
     st.markdown(f"""
         <div class="triage-box t-{level}">
-            <h4 style="margin:0; color:#333;">{labels.get(level, 'LEVEL '+str(level))}</h4>
-            <p style="margin:5px 0 0 0; color:#666; font-size:0.85em;">Assigned by: <b>{name}</b></p>
+            <h4 style="margin:0; color:var(--text);">{labels.get(level, 'LEVEL '+str(level))}</h4>
+            <p style="margin:5px 0 0 0; opacity: 0.8; font-size:0.85em;">Assigned by: <b>{name}</b></p>
         </div>
     """, unsafe_allow_html=True)
 
